@@ -1,0 +1,8 @@
+{
+  "name": "SmartCare HMS",
+  "description": "Full-stack Hospital Management System for healthcare facilities in Malawi and across Africa, integrating patient care, EMR, pharmacy, laboratory, admissions, billing (MWK), and analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

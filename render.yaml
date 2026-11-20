@@ -1,0 +1,51 @@
+services:
+  - type: web
+    name: smartcare-hms
+    runtime: node
+    plan: starter
+    region: frankfurt
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SQL_SSL
+        value: "true"
+      - key: SQL_HOST
+        fromDatabase:
+          name: smartcare-hms-db
+          property: host
+      - key: SQL_PORT
+        fromDatabase:
+          name: smartcare-hms-db
+          property: port
+      - key: SQL_DB_NAME
+        fromDatabase:
+          name: smartcare-hms-db
+          property: database
+      - key: SQL_USER
+        fromDatabase:
+          name: smartcare-hms-db
+          property: user
+      - key: SQL_PASSWORD
+        fromDatabase:
+          name: smartcare-hms-db
+          property: password
+      - key: SQL_ADMIN_USER
+        fromDatabase:
+          name: smartcare-hms-db
+          property: user
+      - key: SQL_ADMIN_PASSWORD
+        fromDatabase:
+          name: smartcare-hms-db
+          property: password
+      - key: SESSION_SECRET
+        generateValue: true
+
+databases:
+  - name: smartcare-hms-db
+    plan: basic-256mb
+    region: frankfurt
+    databaseName: smartcare_hms
+    user: smartcare_app
